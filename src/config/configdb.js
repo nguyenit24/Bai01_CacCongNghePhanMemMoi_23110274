@@ -1,19 +1,15 @@
-import { Sequelize } from 'sequelize';
+import mongoose from 'mongoose';
 
-// Khởi tạo instance Sequelize với các tham số từ config
-const sequelize = new Sequelize('node_fulltack', 'root', '1234', {
-    host: 'localhost',
-    dialect: 'mysql',
-    logging: false
-});
-
-let connectDB = async () => {
+const connectDB = async () => {
     try {
-        await sequelize.authenticate();
-        console.log('>>> Connection has been established successfully.');
+        // Thay chuỗi này bằng Connection String từ MongoDB Atlas của bạn
+        const uri = process.env.MONGO_URI;
+        
+        await mongoose.connect(uri);
+        console.log('>>> Connected to MongoDB Cloud Atlas successfully!');
     } catch (error) {
-        console.error('Unable to connect to the database:', error);
+        console.error('Connection error:', error);
     }
 }
 
-module.exports = connectDB;
+export default connectDB;

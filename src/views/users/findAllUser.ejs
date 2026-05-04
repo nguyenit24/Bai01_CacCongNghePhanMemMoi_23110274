@@ -14,8 +14,8 @@
             <td><%= datalist[i].lastName %></td>
             <td><%= datalist[i].address %></td>
             <td>
-                <a href="/edit-crud?id=<%= datalist[i].id %>">Edit</a> | 
-                <a href="/delete-crud?id=<%= datalist[i].id %>">Delete</a>
+                <a href="/edit-crud?id=<%= datalist[i]._id %>">Edit</a> | 
+                <a href="/delete-crud?id=<%= datalist[i]._id %>">Delete</a>
             </td>
         </tr>
         <% } %>

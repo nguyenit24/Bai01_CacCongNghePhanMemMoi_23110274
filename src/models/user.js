@@ -1,33 +1,31 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+import mongoose from 'mongoose';
+const { Schema } = mongoose;
 
-module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // định nghĩa các mối quan hệ (1-n, n-n) ở đây
-    }
-  };
-  User.init({
-    email: DataTypes.STRING,
-    password: DataTypes.STRING,
-    firstName: DataTypes.STRING,
-    lastName: DataTypes.STRING,
-    address: DataTypes.STRING,
-    phoneNumber: DataTypes.STRING,
-    gender: DataTypes.BOOLEAN,
-    image: DataTypes.STRING,
-    roleId: DataTypes.STRING,
-    positionId: DataTypes.STRING,
-  }, {
-    sequelize,
-    modelName: 'User',
-  });
-  return User;
-};
+const userSchema = new Schema({
+    email: { 
+        type: String, 
+        required: true, 
+        unique: true // Đảm bảo email không bị trùng
+    },
+    password: { 
+        type: String, 
+        required: true 
+    },
+    firstName: String,
+    lastName: String,
+    address: String,
+    phoneNumber: String,
+    gender: {
+        type: Boolean,
+        default: false // false: Male, true: Female
+    },
+    image: String,
+    roleId: String,
+    positionId: String
+}, { 
+    // Tự động tạo createdAt và updatedAt giống như Sequelize
+    timestamps: true 
+});
+
+const User = mongoose.model('User', userSchema);
+export default User;
