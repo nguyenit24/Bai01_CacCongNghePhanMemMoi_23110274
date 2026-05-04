@@ -1,5 +1,5 @@
 {
     "presets": [
-        "@label/presen-env"
+        "@babel/preset-env"
     ]
 }

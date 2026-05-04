@@ -1,7 +1,7 @@
 import { Sequelize } from 'sequelize';
 
 // Khởi tạo instance Sequelize với các tham số từ config
-const sequelize = new Sequelize('node_fulltask', 'root', '123', {
+const sequelize = new Sequelize('node_fulltack', 'root', '1234', {
     host: 'localhost',
     dialect: 'mysql',
     logging: false
